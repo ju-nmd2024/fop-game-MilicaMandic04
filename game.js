@@ -204,7 +204,7 @@ function drawGameOverScreen() {
   text("RETRY", x + 202, y + 207);
 }
 
-//repeat button on a successful landing
+//repeat button for a successful landing
 function drawRepeatButton() {
   fill(230, 230, 250);
   textFont("bebas");
@@ -227,17 +227,17 @@ function draw() {
     charachter(charachterX, charachterY);
 
     // gravity
-    velocityY += acceleration;
+    velocityY += acceleration; 
     charachterY += velocityY;
 
-    // proverava sletanje
+    //  checking if the ship landed
     if (charachterY >= 570) {
-      charachterY = 570;
+      charachterY = 570; //where the ship is supposed to land, stops movement at that position
       if (Math.abs(velocityY) <= maxLandingSpeed) {
         landed = true; // Successful landing
         drawRepeatButton();
       } else {
-        landed = false; // landing too fast
+        landed = false; //if it lands too fast
         gameState = "gameover";
       }
       velocityY = 0;
@@ -247,14 +247,14 @@ function draw() {
   }
 }
 
-// pritisnut space key
+//space key down
 function keyPressed() {
   if (gameState === "playing" && keyCode === 32) {
     velocityY = -2; // da bi se brod pomerio ka gore
   }
 }
 
-// za buttons da rade kada se pritisnu
+// for all the buttons
 function mousePressed() {
   if (gameState === "start") {
     if (
